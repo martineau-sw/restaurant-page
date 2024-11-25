@@ -14,19 +14,11 @@ module.exports = {
       template: './src/template.html',  
     }),
   ],
-  devtool: 'eval-source-map',
-  devServer: {
-    watchFile: [ './src/template.html' ],
-  },
   module: {
     rules: [
       {
         test: /\.css$/i,
         use: [ 'style-loader', 'css-loader' ],
-      },
-      {
-        test: /\.(png|gif|svg|jpg|jpeg)$/i,
-        loader: 'asset/resource',
       },
       {
         test: /\.html$/i,

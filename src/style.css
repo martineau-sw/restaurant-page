@@ -5,6 +5,10 @@
   --shadow-color: rgb(0 0 0 / 0.1);
   --hover-color: rgb(255 0 255);
   --press-color: rgb(0 255 255);
+
+  --espresso-color: rgb(50 0 0);
+  --milk-color: rgb(255 250 200);
+  --foam-color: rgb(255 255 255);
 }
 
 
@@ -174,7 +178,7 @@ footer {
 .menu-item:hover {
   border-bottom-left-radius: 25%;
   border-bottom-right-radius: 25%;
-  border-top: 0 solid white;
+  border-top: 1px solid transparent;
 
   h3 { translate: -100vw -1em; }
   strong { translate: -100vw 0; }
@@ -182,15 +186,15 @@ footer {
 }
 
 .espresso {
-  background-color: rgb(255, 0, 0);
+  background-color: var(--espresso-color)
 }
 
 .milk {
-  background-color: rgb(255, 106, 0);
+  background-color: var(--milk-color)
 }
 
 .foam {
-  background-color: rgb(255, 200, 0);
+  background-color: var(--foam-color);
 }
 
 #latte:hover {
@@ -224,7 +228,7 @@ footer {
   .espresso { 
     transition: height 1s ease, background-color 500ms ease-out;
     height: 100%; 
-    background-color: rgb(255, 93, 93); 
+    background-color: rgb(50 30 30); 
   }
 }
 
