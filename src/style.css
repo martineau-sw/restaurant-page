@@ -167,7 +167,7 @@ footer {
 }
 
 .menu-item div {
-  transition: height 1s ease;
+  transition: height 1s ease-out;
   position: absolute;
   bottom: 0;
   left: 0;
