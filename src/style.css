@@ -1,10 +1,241 @@
+:root {
+  --background-color: rgb(10 14 18);
+  --foreground-color: rgb(20 24 28);
+  --font-color: rgb(200 200 200);
+  --shadow-color: rgb(0 0 0 / 0.1);
+  --hover-color: rgb(255 0 255);
+  --press-color: rgb(0 255 255);
+}
+
+
 * {
   font-size: 1em;
   font-family: 'Nunito', 'Helvetica', 'Arial', sans-serif;
+  color: var(--text-color);
 }
 
-:root {
-  --background-color: rgb(0 0 0);
-  --font-color: rgb(200 200 200);
-  --shadow-color: rgb(0 0 0 / 0.1);
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-color);
+}
+
+header {
+  color: var(--font-color);
+  font-size: 1em;
+  justify-items: center;
+  margin: 2em;
+}
+
+nav {
+  display: flex;
+  /* background-color: var(--foreground-color); */
+  width: 100vw;
+  justify-content: center;
+}
+
+nav div {
+  flex: 1;
+  border-bottom: 1px solid var(--font-color);
+  align-self: center;
+  margin: 0 2vw;
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.1ch;
+  font-weight: 300;
+  font-size: 2em;
+}
+
+h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.1ch;
+  font-weight: 300;
+  font-size: 1.5em;
+  color: var(--font-color);
+  align-self: center;
+  /* text-shadow: 0 0 0.1em var(--font-color); */
+}
+
+h3 {
+  font-size: 1.15em;
+  text-transform: uppercase;
+  letter-spacing: 0.1ch;
+  font-weight: 300;
+}
+
+strong {
+  font-size: 1.15em;
+  margin-top: 2ex;
+  letter-spacing: 0.1ch;
+  font-weight: 300;
+}
+
+p {
+  color: var(--font-color);
+  font-weight: 100;
+  letter-spacing: 0.085ch;
+  place-self: start;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.subcontent {
+  margin: 4em 0;
+}
+
+.subcontent > p {
+  place-self: center;
+}
+
+#menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  align-items: start;
+  flex: 1;
+  gap: 2em;
+}
+
+hr {
+  width: 20vw;
+  border-bottom: 1px solid var(--font-color);
+}
+
+button {
+  transition: color 500ms ease, filter 500ms ease;
+  color: var(--font-color);
+  background-color: transparent;
+  border: none;
+  padding: 1em 1.81em;
+}
+
+footer {
+  position: sticky;
+  bottom: 2em;
+  color: var(--font-color);
+}
+
+.menu-item {
+  transition: all 200ms ease;
+
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 3em;
+  width: 20ch;
+  height: 20ch;
+  color: var(--font-color);
+  border: 2px solid var(--font-color);
+  padding: 2em;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-item > * {
+  transition: all 500ms ease;
+}
+
+.menu-item h3 {
+  z-index: 1;
+  mix-blend-mode:difference;
+  top: 1em;
+}
+
+.menu-item strong {
+  z-index: 1;
+  mix-blend-mode:difference;
+}
+
+.menu-item > p {
+  font-size: 1.15em;
+  font-weight: 200;
+  grid-column: 1 / span 2;
+  z-index: 1;
+  mix-blend-mode:difference;
+}
+
+.menu-item div {
+  transition: height 1s ease;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0%;
+}
+
+.menu-item:hover {
+  border-bottom-left-radius: 25%;
+  border-bottom-right-radius: 25%;
+  border-top: 0 solid white;
+
+  h3 { translate: -100vw -1em; }
+  strong { translate: -100vw 0; }
+  p { translate: -100vw 0; } 
+}
+
+.espresso {
+  background-color: rgb(255, 0, 0);
+}
+
+.milk {
+  background-color: rgb(255, 106, 0);
+}
+
+.foam {
+  background-color: rgb(255, 200, 0);
+}
+
+#latte:hover {
+  .foam { height: 100%; }
+  .milk { height: 80%; }
+  .espresso { height: 20%; }
+}
+
+#cappuccino:hover {
+  .foam { height: 100%; }
+  .milk { height: 60%; }
+  .espresso { height: 20%; }
+}
+
+#flat-white:hover {
+  .milk { height: 100%; }
+  .espresso { height: 20%; }
+}
+
+#macchiato:hover {
+  .foam { height: 100%; }
+  .espresso { height: 50%; }
+}
+
+#cortado:hover {
+  .milk { height: 100%; }
+  .espresso { height: 50%; }
+}
+
+#americano:hover {
+  .espresso { 
+    transition: height 1s ease, background-color 500ms ease-out;
+    height: 100%; 
+    background-color: rgb(255, 93, 93); 
+  }
+}
+
+
+button:hover {
+  transition: color 1s ease, filter 1s ease;
+  color: var(--hover-color);
+  filter: drop-shadow(0 0 1em var(--hover-color));
+}
+
+button:active {
+  transition: color 100ms linear, filter 100ms linear;
+  color: var(--press-color);
 }

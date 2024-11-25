@@ -1,46 +1,46 @@
-
-
-
-const MenuItem = (name, price, desc) => {
-  return { name, price, desc };
+function MenuItem(name, price, desc) {
+  return { name, price: price + '∆', desc };
 }
 
-const latte = MenuItem('Latte', '110∆', 'Espresso with steamed milk and light foam layer');
-const cappuccino = MenuItem('Cappuccino', '110∆', 'Espresso with equal parts steamed milk and foam');
-const solo = MenuItem('Solo', '60∆', 'Single espresso shot');
+import { DomTool } from "./dom_tool";
 
-const items = [latte, cappuccino, solo];
+export default (function() {
+  const items = [
+    MenuItem('Latte', 110, 'Espresso with steamed milk and some foam'),
+    MenuItem('Cappuccino', 110, 'Espresso with equal parts steamed milk and foam'),
+    MenuItem('Flat White', 100, 'Espresso and steamed milk and minimal foam'),
+    MenuItem('Cortado', 80, 'Equal part espresso and steamed milk'),
+    MenuItem('Macchiato', 80, 'Equal part espresso and foam'),
+    MenuItem('Americano', 60, 'Espresso with water'),
+  ];
 
-function createMenuItemNode(menuItem) {
-  const itemNode = document.createElement('div');
-  const itemName = document.createElement('h3');
-  const itemPrice = document.createElement('strong');
-  const itemDesc = document.createElement('p');
+  const createItemNode = item => {
+    const itemNode = document.createElement('div');
+    itemNode.classList.add('menu-item');
+    itemNode.id = item.name.toLowerCase().replaceAll(' ', '-');
 
-  itemName.textContent = menuItem.name;
-  itemPrice.textContent = menuItem.price;
-  itemDesc.textContent = menuItem.desc;
+    const foam = document.createElement('div');
+    const milk = document.createElement('div');
+    const espresso = document.createElement('div');
 
-  itemNode.classList.add('item');
-
-  itemNode.appendChild(itemName);
-  itemNode.appendChild(itemPrice);
-  itemNode.appendChild(itemDesc);
-  
-  return itemNode;
-}
-
-function createMenuNode() {
-  const menuNode = document.createElement('div');
-  const title = document.createElement('h2');
-  menuNode.setAttribute('id', 'menu');
-  menuNode.appendChild(title);
-  for (const item of items) {
-    const itemNode = createMenuItemNode(item);
-    menuNode.appendChild(itemNode);
+    foam.classList.add('foam');
+    milk.classList.add('milk');
+    espresso.classList.add('espresso');
+    
+    itemNode.append(
+      DomTool.createText('h3', item.name), 
+      DomTool.createText('strong', item.price),
+      DomTool.createText('p', item.desc),
+      foam,
+      milk,
+      espresso );
+    return itemNode;
   }
 
-  return menuNode;
-}
+  const menu = document.createElement('div');
+  menu.id = 'menu';
+  menu.classList.add('subcontent');
+  menu.append(...items.map(item => createItemNode(item)));
 
-export { createMenuNode };
+  return [ DomTool.createText('h2', 'Menu'), document.createElement('hr'), menu ]; 
+})();

@@ -1,16 +1,17 @@
-function createHomeNode() {
-  const homeNode = document.createElement('div');
-  homeNode.id = 'home';
+import { DomTool } from "./dom_tool";
 
-  const title = document.createElement('h2');
-  title.textContent = 'Home';
+export default (function() {
+  const paragraphs = (() => {
+    const text = [
+      "Welcome to Facsimilie Coffee"
+    ];
+    
+    return text.map(t => DomTool.createText('p', t));
+  })();
 
-  const message = document.createElement('p');
-  message.textContent = 'Welcome to Facsimilie Coffee';
-  homeNode.appendChild(title);
-  homeNode.appendChild(message);
+  const subcontent = document.createElement('div');
+  subcontent.classList.add('subcontent');
+  subcontent.append(...paragraphs);
 
-  return homeNode;
-}
-
-export { createHomeNode };
+  return [ DomTool.createText('h2', 'Home'), document.createElement('hr'), subcontent];
+})();

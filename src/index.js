@@ -1,5 +1,5 @@
 import './style.css';
 
-import { initializePage } from './body';
+import { default as Body } from './body';
 
-initializePage();
+Body.init();
