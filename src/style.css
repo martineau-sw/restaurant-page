@@ -232,7 +232,6 @@ footer {
   }
 }
 
-
 button:hover {
   transition: color 1s ease, filter 1s ease;
   color: var(--hover-color);
